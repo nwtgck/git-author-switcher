@@ -8,7 +8,7 @@ description: |
   Author switcher for git
 
 targets:
-  switch-author:
+  chauthor:
     main: src/main.cr
 
 license: MIT

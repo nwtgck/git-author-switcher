@@ -1,6 +1,6 @@
 # Author switcher for git
 
-`switch-author` is for git users using shared PC with multiple users
+`chauthor` (Change Author) is for git users using shared PC with multiple users
 
 ### Command's side effects
 
@@ -22,21 +22,21 @@ $ shards build
 ## Example usages
 
 ```bash
-$ ./bin/switch-author nwtgck
+$ ./bin/chauthor nwtgck
 ```
 
 ```bash
-$ ./bin/switch-author nbegin
+$ ./bin/chauthor nbegin
 ```
 
 or
 
 ```bash
-$ ./bin/switch-author nw
+$ ./bin/chauthor nw
 ```
 
 ```bash
-$ ./bin/switch-author nb
+$ ./bin/chauthor nb
 ```
 
 (Smart search can solve by first letters `nw`)
@@ -46,7 +46,7 @@ $ ./bin/switch-author nb
 An error will occur if you type just `n` like the follwoing.
 
 ```bash
-./bin/switch-author n
+./bin/chauthor n
 Error: Duplicate ids: Ryo Ota and N Begin
 ```
 This error is for avoiding unexpected config for user.
