@@ -4,16 +4,28 @@
 
 Side effects of this comamnd are only `git config user.name ...` and `git config user.email ...`
 
+## Requirements
+
+* Shards (Dependency manager for the Crystal)
+
+## How to build
+
+```bash
+$ cd <this repo>
+$ shards build
+```
+
+
 ## Example usage
 
 ```bash
-$ ./switch-author nwtgck
+$ ./bin/switch-author nwtgck
 ```
 
 or
 
 ```bash
-$ ./switch-author nw
+$ ./bin/switch-author nw
 ```
 
 (Smart search can solve by first letters `nw`)
