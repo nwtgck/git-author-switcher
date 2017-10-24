@@ -16,13 +16,13 @@ class Authors < Array(Author)
 end
 
 # Run command with p
-def system_with_echo(cmd_str : String)
+def system_with_echo(cmd_str : String): Bool
   puts("> #{cmd_str}")
   system(cmd_str)
 end
 
 # Find authors by uncomplete ID
-def smart_find(authors : Authors, uncomplete_id : String)
+def smart_find(authors : Authors, uncomplete_id : String): Array(Author)
   authors.select{|author|
     author.id.starts_with?(uncomplete_id)
   }
@@ -31,7 +31,7 @@ end
 
 # ID is not specified
 if ARGV.size != 1
-  puts ("Usage: #{__FILE__} <id>")
+  puts ("Usage: switch-author <id>")
   exit 1
 end
 
@@ -65,9 +65,12 @@ author = candidates.first
 
 # Run commands
 puts("Run:")
-system_with_echo("git config user.name '#{author.name}'")
-system_with_echo("git config user.email '#{author.email}'")
-
+if !system_with_echo("git config user.name '#{author.name}'")
+  exit 1
+end
+if !system_with_echo("git config user.email '#{author.email}'")
+  exit 1
+end
 puts()
 
 # Confirmation of git config

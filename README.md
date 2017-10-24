@@ -16,7 +16,7 @@ $ shards build
 ```
 
 
-## Example usage
+## Example usages
 
 ```bash
 $ ./bin/switch-author nwtgck
