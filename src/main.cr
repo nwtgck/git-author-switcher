@@ -44,7 +44,12 @@ if !File.exists?(AUTHOR_YAML_PATH)
 end
 
 
-authors = Authors.from_yaml(File.read(AUTHOR_YAML_PATH))
+begin
+  authors = Authors.from_yaml(File.read(AUTHOR_YAML_PATH))
+rescue YAML::ParseException
+  STDERR.puts("Error: Wrong format '#{AUTHOR_YAML_PATH}' ")
+  exit 1
+end
 
 candidates = smart_find(authors, uncomplete_id)
 #
