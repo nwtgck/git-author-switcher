@@ -1,0 +1,38 @@
+#! /usr/bin/ruby
+
+require 'yaml'
+
+# Run command with p
+def system_with_echo(cmd_str)
+  puts("> #{cmd_str}")
+  system(cmd_str)
+end
+
+# Get ID from a command argument
+id = ARGV[0]
+
+# ID is not specified
+if id.nil?
+  puts ("Usage: #{__FILE__} <id>")
+  exit 1
+end
+
+# Get authors from yaml setting
+yaml_id_to_author = YAML.load_file("authors.yaml")
+
+yaml_author = yaml_id_to_author[id]
+if yaml_author.nil?
+  $stderr.puts("Author '#{id}' is not found")
+  exit 1
+end
+
+# Run commands
+puts("Run:")
+system_with_echo("git config user.name '#{yaml_author['name']}'")
+system_with_echo("git config user.email '#{yaml_author['email']}'")
+
+puts()
+
+# Confirmation of git config
+puts("Confirmation:")
+system_with_echo("git config --local --list")
