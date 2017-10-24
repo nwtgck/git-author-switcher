@@ -1,6 +1,6 @@
 # Author switcher for git
 
-## Example usagge
+## Example usage
 
 ```bash
 $ ./switch-author nwtgck
@@ -16,7 +16,7 @@ $ ./switch-author nw
 
 ## Author information
 
-Author information is written in authors.yaml.
+Author information is written in `authors.yaml`.
 
 ```yaml
 nwtgck:
