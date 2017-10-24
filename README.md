@@ -16,7 +16,7 @@ $ shards build
 ```
 
 
-## Example usage
+## Example usages
 
 ```bash
 $ ./bin/switch-author nwtgck
@@ -30,9 +30,19 @@ $ ./bin/switch-author nw
 
 (Smart search can solve by first letters `nw`)
 
-## Author information
+## Smart/Safe completion
 
-Put author information as `~/.git-authors.yaml`.
+An error will occur if you type just `n` like the follwoing.
+
+```bash
+./bin/switch-author n
+Error: Duplicate ids: Ryo Ota and N Begin
+```
+This error is for avoiding unexpected config for user.
+
+## Authors' information
+
+Put authors' information as `$HOME/.git-authors.yaml`.
 
 ### Example of `~/.git-authors.yaml`
 
