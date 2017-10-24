@@ -1,6 +1,6 @@
 require "yaml"
 
-AUTHOR_YAML_PATH = File.join(ENV["HOME"], ".git-author.yaml")
+AUTHOR_YAML_PATH = File.join(ENV["HOME"], ".git-authors.yaml")
 
 
 class Author
