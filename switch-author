@@ -8,11 +8,19 @@ def system_with_echo(cmd_str)
   system(cmd_str)
 end
 
+# Find authors by uncomplete ID
+def smart_find(yaml_id_to_author, uncomplete_id)
+  yaml_authors = yaml_id_to_author.select{|id, author|
+    id.start_with?(uncomplete_id)
+  }
+  .values
+end
+
 # Get ID from a command argument
-id = ARGV[0]
+uncomplete_id = ARGV[0]
 
 # ID is not specified
-if id.nil?
+if uncomplete_id.nil?
   puts ("Usage: #{__FILE__} <id>")
   exit 1
 end
@@ -20,11 +28,17 @@ end
 # Get authors from yaml setting
 yaml_id_to_author = YAML.load_file("authors.yaml")
 
-yaml_author = yaml_id_to_author[id]
-if yaml_author.nil?
-  $stderr.puts("Author '#{id}' is not found")
+yaml_authors = smart_find(yaml_id_to_author, uncomplete_id)
+
+if(yaml_authors.length == 0)
+  $stderr.puts("Error: There isn't any matching author with '#{uncomplete_id}'")
+  exit 1
+elsif(yaml_authors.length != 1)
+  $stderr.puts("Error: Duplicate ids: #{yaml_authors.map{|a| a['name']}.join(' and ')} ")
   exit 1
 end
+
+yaml_author = yaml_authors.first
 
 # Run commands
 puts("Run:")
