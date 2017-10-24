@@ -4,16 +4,28 @@
 
 Side effects of this comamnd are only `git config user.name ...` and `git config user.email ...`
 
+## Requirements
+
+* Shards (Dependency manager for the Crystal)
+
+## How to build
+
+```bash
+$ cd <this repo>
+$ shards build
+```
+
+
 ## Example usage
 
 ```bash
-$ ./switch-author nwtgck
+$ ./bin/switch-author nwtgck
 ```
 
 or
 
 ```bash
-$ ./switch-author nw
+$ ./bin/switch-author nw
 ```
 
 (Smart search can solve by first letters `nw`)
@@ -25,16 +37,15 @@ Put author information as `~/.git-authors.yaml`.
 ### Example of `~/.git-authors.yaml`
 
 ```yaml
-nwtgck:
+- id : nwtgck
   name : Ryo Ota
   email: nwtgck@gmail.com
 
-exampleman:
+- id : exampleman
   name: Example Man
   email: test@example.com
 
-nbegin:
+- id : nbegin
   name: N Begin
   email: nbegin@example.com
-
 ```
