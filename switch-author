@@ -2,6 +2,8 @@
 
 require 'yaml'
 
+AUTHOR_YAML_PATH = File.join(ENV['HOME'], ".git-author.yaml")
+
 # Run command with p
 def system_with_echo(cmd_str)
   puts("> #{cmd_str}")
@@ -25,8 +27,13 @@ if uncomplete_id.nil?
   exit 1
 end
 
+if !File.exist?(AUTHOR_YAML_PATH)
+  $stderr.puts("Error: '#{AUTHOR_YAML_PATH}' not found'")
+  exit 1
+end
+
 # Get authors from yaml setting
-yaml_id_to_author = YAML.load_file("authors.yaml")
+yaml_id_to_author = YAML.load_file(AUTHOR_YAML_PATH)
 
 yaml_authors = smart_find(yaml_id_to_author, uncomplete_id)
 
