@@ -31,7 +31,7 @@ end
 
 # ID is not specified
 if ARGV.size != 1
-  puts ("Usage: switch-author <id>")
+  puts ("Usage: chauthor <id>")
   exit 1
 end
 

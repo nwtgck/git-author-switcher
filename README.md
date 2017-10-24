@@ -1,14 +1,17 @@
 # Author switcher for git
 
-`switch-author` is for git users using shared PC with multiple users
+`chauthor` (Change Author) is for git users using shared PC with multiple users
+
+### Command's side effects
 
 Side effects of this comamnd are only `git config user.name ...` and `git config user.email ...`
 
-## Requirements
+## How to build
+
+### Build requirements
 
 * Shards (Dependency manager for the Crystal)
 
-## How to build
 
 ```bash
 $ cd <this repo>
@@ -19,13 +22,21 @@ $ shards build
 ## Example usages
 
 ```bash
-$ ./bin/switch-author nwtgck
+$ ./bin/chauthor nwtgck
+```
+
+```bash
+$ ./bin/chauthor nbegin
 ```
 
 or
 
 ```bash
-$ ./bin/switch-author nw
+$ ./bin/chauthor nw
+```
+
+```bash
+$ ./bin/chauthor nb
 ```
 
 (Smart search can solve by first letters `nw`)
@@ -35,7 +46,7 @@ $ ./bin/switch-author nw
 An error will occur if you type just `n` like the follwoing.
 
 ```bash
-./bin/switch-author n
+./bin/chauthor n
 Error: Duplicate ids: Ryo Ota and N Begin
 ```
 This error is for avoiding unexpected config for user.
@@ -44,7 +55,7 @@ This error is for avoiding unexpected config for user.
 
 Put authors' information as `$HOME/.git-authors.yaml`.
 
-### Example of `~/.git-authors.yaml`
+### Example of `$HOME/.git-authors.yaml`
 
 ```yaml
 - id : nwtgck
