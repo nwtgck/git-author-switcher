@@ -19,7 +19,7 @@ $ shards build
 ```
 
 
-## Example usage
+## Example usages
 
 ```bash
 $ ./bin/switch-author nwtgck
@@ -51,9 +51,9 @@ Error: Duplicate ids: Ryo Ota and N Begin
 ```
 This error is for avoiding unexpected config for user.
 
-## `$HOME/.git-authors.yaml`
+## Authors' information
 
-Put author information as `$HOME/.git-authors.yaml`.
+Put authors' information as `$HOME/.git-authors.yaml`.
 
 ### Example of `$HOME/.git-authors.yaml`
 
