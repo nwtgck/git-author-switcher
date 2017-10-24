@@ -25,16 +25,15 @@ Put author information as `~/.git-authors.yaml`.
 ### Example of `~/.git-authors.yaml`
 
 ```yaml
-nwtgck:
+- id : nwtgck
   name : Ryo Ota
   email: nwtgck@gmail.com
 
-exampleman:
+- id : exampleman
   name: Example Man
   email: test@example.com
 
-nbegin:
+- id : nbegin
   name: N Begin
   email: nbegin@example.com
-
 ```

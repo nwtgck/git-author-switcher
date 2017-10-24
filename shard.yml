@@ -1,0 +1,14 @@
+name: git-author-switcher
+version: 0.1.0-SNAPSHOT
+
+authors:
+  - Ryo Ota <nwtgck@gmail.com>
+
+description: |
+  Author switcher for git
+
+targets:
+  switch-author:
+    main: src/main.cr
+
+license: MIT
