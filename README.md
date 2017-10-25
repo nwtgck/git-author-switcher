@@ -19,7 +19,31 @@ $ shards build
 ```
 
 
+
+## Authors' information
+
+Put authors' information as `$HOME/.git-authors.yaml`.
+
+### Example of `$HOME/.git-authors.yaml`
+
+```yaml
+- id : nwtgck
+  name : Ryo Ota
+  email: nwtgck@gmail.com
+
+- id : exampleman
+  name: Example Man
+  email: test@example.com
+
+- id : nbegin
+  name: N Begin
+  email: nbegin@example.com
+```
+
+
 ## Example usages
+
+### How to change author
 
 ```bash
 $ ./bin/chauthor nwtgck
@@ -51,22 +75,14 @@ Error: Duplicate ids: Ryo Ota and N Begin
 ```
 This error is for avoiding unexpected config for user.
 
-## Authors' information
+### How to list all author
 
-Put authors' information as `$HOME/.git-authors.yaml`.
+```
+$ ./bin/chauthor --list
+```
 
-### Example of `$HOME/.git-authors.yaml`
+### How to unset author name and email in git-config 
 
-```yaml
-- id : nwtgck
-  name : Ryo Ota
-  email: nwtgck@gmail.com
-
-- id : exampleman
-  name: Example Man
-  email: test@example.com
-
-- id : nbegin
-  name: N Begin
-  email: nbegin@example.com
+```
+$ ./bin/chauthor --unset
 ```
