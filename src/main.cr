@@ -8,8 +8,13 @@ AUTHOR_YAML_PATH = File.join(ENV["HOME"], ".git-authors.yaml")
 enable_list_option = false
 
 OptionParser.new do |opt|
+  opt.banner = "chauthor - Author switcher for git"
   opt.on("-l",  "--list",   "List all authors")   { |v| enable_list_option  = v }
-  opt.on("-h", "--help", "Show this help") { puts(opt) }
+  opt.on("-h", "--help", "Show this help") {
+    puts(opt)
+    # Exit program
+    exit(0)
+  }
 end.parse!
 
 
