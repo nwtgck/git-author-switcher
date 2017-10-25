@@ -55,9 +55,19 @@ end
 
 # If list option is enable
 if enable_list_option
+
+  # Calc max ID length
+  max_id_size  = authors.map{|a| a.id.size}.max
+
+  # Calc max name length
+  max_name_size = authors.map{|a| a.name.size}.max
+
   # List authors
+  puts("Authors in '#{AUTHOR_YAML_PATH}':")
   authors.each.with_index(1){|a, i|
-    puts("#{i}. id: '#{a.id}', name: '#{a.name}', email: '#{a.email}'")
+    spaces_after_id    = " " * (max_id_size   - a.id.size)
+    spaces_after_name  = " " * (max_name_size - a.name.size)
+    puts("#{i}. id: '#{a.id}',#{spaces_after_id} name: '#{a.name}',#{spaces_after_name} email: '#{a.email}'")
   }
   # Exit program
   exit(0)
