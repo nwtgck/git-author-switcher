@@ -119,12 +119,11 @@ author = candidates.first
 
 # Run commands
 puts("Run:")
-if !system_with_echo("git config user.name '#{author.name}'")
-  exit 1
+if system_with_echo("git config user.name '#{author.name}'")
+  if system_with_echo("git config user.email '#{author.email}'")
+  end
 end
-if !system_with_echo("git config user.email '#{author.email}'")
-  exit 1
-end
+
 puts()
 
 # Confirmation of git config
