@@ -5,18 +5,19 @@ require "option_parser"
 AUTHOR_YAML_PATH = File.join(ENV["HOME"], ".git-authors.yaml")
 
 
-enable_list_option = false
+enable_list_option  = false
+enable_unset_option = false
 
 OptionParser.new do |opt|
   opt.banner = "chauthor - Author switcher for git"
   opt.on("-l",  "--list",   "List all authors")   { |v| enable_list_option  = v }
+  opt.on("-u",  "--unset",  "Unset author on git config") { |v| enable_unset_option  = v }  
   opt.on("-h", "--help", "Show this help") {
     puts(opt)
     # Exit program
     exit(0)
   }
 end.parse!
-
 
 class Author
   YAML.mapping(
@@ -58,9 +59,8 @@ rescue YAML::ParseException
   exit 1
 end
 
-# If list option is enable
+# If list-option is enable
 if enable_list_option
-
   # Calc max ID length
   max_id_size  = authors.map{|a| a.id.size}.max
 
@@ -78,6 +78,22 @@ if enable_list_option
   exit(0)
 end
 
+
+# If unset-option is enable
+if enable_unset_option
+  puts("Run:")
+  if system_with_echo("git config --local --unset user.name")
+    if system_with_echo("git config --local --unset user.email")  
+    end
+  end
+  
+  puts()
+
+  # Confirmation of git config
+  puts("Confirmation:")
+  system_with_echo("git config --local --list")
+  exit(0)
+end
 
 # ID is not specified
 if ARGV.size != 1
@@ -103,12 +119,11 @@ author = candidates.first
 
 # Run commands
 puts("Run:")
-if !system_with_echo("git config user.name '#{author.name}'")
-  exit 1
+if system_with_echo("git config user.name '#{author.name}'")
+  if system_with_echo("git config user.email '#{author.email}'")
+  end
 end
-if !system_with_echo("git config user.email '#{author.email}'")
-  exit 1
-end
+
 puts()
 
 # Confirmation of git config
