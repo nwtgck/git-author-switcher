@@ -1,6 +1,16 @@
 require "yaml"
+require "option_parser"
+
 
 AUTHOR_YAML_PATH = File.join(ENV["HOME"], ".git-authors.yaml")
+
+
+enable_list_option = false
+
+OptionParser.new do |opt|
+  opt.on("-l",  "--list",   "List all authors")   { |v| enable_list_option  = v }
+  opt.on("-h", "--help", "Show this help") { puts(opt) }
+end.parse!
 
 
 class Author
@@ -29,14 +39,6 @@ def smart_find(authors : Authors, uncomplete_id : String): Array(Author)
 end
 
 
-# ID is not specified
-if ARGV.size != 1
-  puts ("Usage: chauthor <id>")
-  exit 1
-end
-
-# Get ID from a command argument
-uncomplete_id = ARGV[0]
 
 if !File.exists?(AUTHOR_YAML_PATH)
   STDERR.puts("Error: '#{AUTHOR_YAML_PATH}' not found'")
@@ -50,6 +52,27 @@ rescue YAML::ParseException
   STDERR.puts("Error: Wrong format '#{AUTHOR_YAML_PATH}' ")
   exit 1
 end
+
+# If list option is enable
+if enable_list_option
+  # List authors
+  authors.each.with_index(1){|a, i|
+    puts("#{i}. id: '#{a.id}', name: '#{a.name}', email: '#{a.email}'")
+  }
+  # Exit program
+  exit(0)
+end
+
+
+# ID is not specified
+if ARGV.size != 1
+  puts ("Usage: chauthor <id>")
+  exit 1
+end
+
+# Get ID from a command argument
+uncomplete_id = ARGV[0]
+
 
 candidates = smart_find(authors, uncomplete_id)
 #
